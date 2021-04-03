@@ -1,7 +1,24 @@
-<h1>Idea Pool</h1>
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Idea Pool</title>
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="/css/styles.css">
+    </head>
 
-<%= yield %>
+    <body>
+        <header>
+            <h1 id="hero">Idea Pool</h1>
+            <h2>Take a dip and find an idea.</h2>
+        </header>
 
-<footer>
-    <p><a href="https://github.com/kristenkinnearohlmann/">Kristen Kinnear-Ohlmann</a></p>
-</footer>
+        <main>
+            <%= yield %>
+        </main>
+
+        <footer>
+            <p>For more information or to contribute, see the <a href="https://github.com/kristenkinnearohlmann/idea-pool">GitHub repo</a> for this project</p>
+        </footer>
+    </body>
+</html>

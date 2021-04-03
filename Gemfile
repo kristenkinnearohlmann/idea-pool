@@ -19,6 +19,10 @@ gem 'rake'
 gem 'require_all'
 # database
 gem 'sqlite3', '~> 1.3.6'
+# used to work with salted, hashed passwords for security
+# needed to go to rubygems.org to find proper syntax
+# to run with WSL
+gem 'bcrypt', '~> 3.1', '>= 3.1.12'
 # used for local server
 gem 'thin'
 # used to serve site, Linux only, run from WSL terminal
