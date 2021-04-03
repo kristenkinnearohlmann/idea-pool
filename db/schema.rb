@@ -31,7 +31,10 @@ ActiveRecord::Schema.define(version: 2021_04_03_134910) do
   create_table "projects", force: :cascade do |t|
     t.string "name"
     t.string "description"
+    t.string "main_language"
+    t.string "github_repo"
     t.boolean "is_private", default: false
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
