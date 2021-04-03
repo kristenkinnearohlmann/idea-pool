@@ -19,6 +19,7 @@ gem 'rake'
 gem 'require_all'
 # database
 gem 'sqlite3', '~> 1.3.6'
+# gem 'sqlite3', git: "git://github.com/sparklemotion/sqlite3-ruby.git"
 # used to work with salted, hashed passwords for security
 # needed to go to rubygems.org to find proper syntax
 # to run with WSL
@@ -28,6 +29,7 @@ gem 'thin'
 # used to serve site, Linux only, run from WSL terminal
 gem 'shotgun'
 # thank God for pry, what's going on inside my code?
+gem 'pry-require_relative'
 gem 'pry'
 # tool to try out your models
 gem 'tux'
