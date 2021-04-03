@@ -8,7 +8,14 @@ You can choose to share any ideas you add, or not - it's up to you! You can view
 
 ## Install Instructions
 
-TBA
+1. Clone this repo to your local machine
+1. OS Terminal Choice
+   1. Windows 10: WSL 2 or higher
+   1. MacOs: Terminal
+1. At the root of the local repo
+   1. Run `bundle install`
+   1. Run `shotgun`
+   1. Click the localhost IP displayed in the terminal to view the site
 ## Contributor's Guide
 
 TBA
