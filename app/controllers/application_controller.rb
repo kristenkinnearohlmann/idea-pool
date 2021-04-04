@@ -2,6 +2,7 @@ class ApplicationController < Sinatra::Base
     # extends Sinatra with methods and Rake tasks for dealing
     # with SQL databses using ActiveRecord
     register Sinatra::ActiveRecordExtension
+    register Sinatra::Flash
     
     # set up sessions
     # TODO: how to hide secret in the future

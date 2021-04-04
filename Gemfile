@@ -13,6 +13,8 @@ gem 'require_all'
 gem 'bcrypt', '~> 3.1', '>= 3.1.12'
 gem 'sqlite3', '~> 1.3.6'
 
+gem 'sinatra-flash'
+
 group :development do
   gem "capybara"
   gem "pry"
