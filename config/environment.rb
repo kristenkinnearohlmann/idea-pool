@@ -1,5 +1,6 @@
 # load gems when your application runs
 require 'bundler'
+# require 'bundler/setup'
 Bundler.require
 
 # set up database connection

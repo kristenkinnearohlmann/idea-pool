@@ -6,6 +6,7 @@ class ApplicationController < Sinatra::Base
     # set up sessions
     # TODO: how to hide secret in the future
     configure do
+        set :public_folder, 'public'
         enable :sessions
         set :session_secret, "vJHqHCgewkv7N9NE"
     end
@@ -15,7 +16,6 @@ class ApplicationController < Sinatra::Base
     set :views, Proc.new { File.join(root, "../views/") }
 
     get '/' do
-        binding.pry
         erb :index
     end
 end
