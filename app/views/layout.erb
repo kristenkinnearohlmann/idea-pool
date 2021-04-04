@@ -8,17 +8,19 @@
     </head>
 
     <body>
-        <header>
-            <h1 id="hero">Idea Pool</h1>
-            <h2>Take a dip and find an idea.</h2>
-        </header>
-
         <main>
-            <%= yield %>
-        </main>
+            <header>
+                <h1 id="hero">Idea Pool</h1>
+                <h2>Take a dip and find an idea.</h2>
+            </header>
 
-        <footer>
-            <p>For more information or to contribute, see the <a href="https://github.com/kristenkinnearohlmann/idea-pool">GitHub repo</a> for this project</p>
-        </footer>
+            <section>
+                <%= yield %>
+            </section>
+
+            <footer>
+                <p>For more information or to contribute, see the <a href="https://github.com/kristenkinnearohlmann/idea-pool">GitHub repo</a> for this project</p>
+            </footer>
+        </main>
     </body>
 </html>

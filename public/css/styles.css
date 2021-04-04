@@ -13,10 +13,11 @@ body {
     width: 100vw;
 }
 
-header, main, footer {
+main {
     margin: 0 auto;
-    max-width: 98%;
+    max-width: 55%;
     text-align: center;
+    overflow: auto;
 }
 
 footer {
