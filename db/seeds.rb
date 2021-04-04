@@ -32,3 +32,9 @@ kenneth.projects << Project.create(name: "NBC Weather", description: "It tells y
 p = Project.find_by(name: "NBC Weather")
 i = Idea.find_by(name: "Weather app")
 i.projects << p
+
+# The Oatmeal records (Matthew Inman)
+# - Joyful Fireflies - The Oatmeal - Web cartoonist Matthew Inman 
+oatmeal = User.create(email: "oatmealsupport@gmail.com", password: "explodingkitten2020", full_name: "Matthew 'The Oatmeal' Inman")
+
+oatmeal.ideas << Idea.create(name: "Joyful Fireflies", description: "Something uplifting of beauty", is_private: false)

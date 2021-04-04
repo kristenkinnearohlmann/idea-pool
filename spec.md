@@ -1,17 +1,24 @@
 # Specifications for the Sinatra Assessment
 
 Specs:
-- [x] Use Sinatra to build the app
-- [ ] Use ActiveRecord for storing information in a database
-- [ ] Include more than one model class (e.g. User, Post, Category)
-- [ ] Include at least one has_many relationship on your User model (e.g. User has_many Posts)
-- [ ] Include at least one belongs_to relationship on another model (e.g. Post belongs_to User)
-- [ ] Include user accounts with unique login attribute (username or email)
+- [x] Use Sinatra to build the app  
+_I installed the recommended gems for Sinatra based on lesson work and video reviews._
+- [x] Use ActiveRecord for storing information in a database  
+_I installed ActiveRecord and ensured the models inherited from its Base class._
+- [x] Include more than one model class (e.g. User, Post, Category)  
+_I included models for User, Idea, Project, and IdeaProject to correlate to my application objects._
+- [x] Include at least one has_many relationship on your User model (e.g. User has_many Posts)  
+_User `has_many` ideas and projects._
+- [x] Include at least one belongs_to relationship on another model (e.g. Post belongs_to User)  
+_Both idea and project `belongs_to` user._
+- [x] Include user accounts with unique login attribute (username or email)
+_Users are identified by their email address._
 - [ ] Ensure that the belongs_to resource has routes for Creating, Reading, Updating and Destroying
 - [ ] Ensure that users can't modify content created by other users
 - [ ] Include user input validations
 - [ ] BONUS - not required - Display validation failures to user with error message (example form URL e.g. /posts/new)
-- [ ] Your README.md includes a short description, install instructions, a contributors guide and a link to the license for your code
+- [x] Your README.md includes a short description, install instructions, a contributors guide and a link to the license for your code  
+_All items are included; I enjoyed crafting a contributor's guide which, while incomplete, starts to indicate what is desired in contributions._
 
 Confirm
 - [ ] You have a large number of small Git commits
