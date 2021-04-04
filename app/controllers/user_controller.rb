@@ -4,11 +4,7 @@ class UserController < ApplicationController
         erb :'users/signup'
     end
 
-    get '/hello' do
-        binding.pry
-    end
-
     post '/signup' do
-        binding.pry
+        puts params[:email]
     end
 end
