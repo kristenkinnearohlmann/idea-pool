@@ -5,7 +5,7 @@ class UserController < ApplicationController
     end
 
     post '/signup' do
-        # binding.pry
+        binding.pry
         # puts params[:email]
         if Helpers.is_logged_in?(session)
             puts "Logged in"
@@ -23,8 +23,15 @@ class UserController < ApplicationController
     end
 
     get '/login' do
-        binding.pry
         erb :'users/login'
+    end
+
+    post '/login' do
+        binding.pry
+        # check email
+        # check password
+        # if valid
+        # if invalid
     end
 
 end
