@@ -48,6 +48,7 @@ class UserController < ApplicationController
     get '/users/:user_id' do
         binding.pry
         if Helpers.is_logged_in?(session) && Helpers.current_user(session).id == params[:user_id].to_i
+            @user = Helpers.current_user(session)
             erb :'users/show'
         else
             redirect '/login'
