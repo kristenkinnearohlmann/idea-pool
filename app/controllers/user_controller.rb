@@ -12,9 +12,7 @@ class UserController < ApplicationController
             # Flash already logged in
             # Redirect user show
         elsif user = User.find_by(email: params[:email])
-            binding.pry
-            # Flash existing email
-            # Redirect to /login
+            redirect '/login'
         else
             puts "Make a user"
             # Validate email, password, name filled in
@@ -23,4 +21,10 @@ class UserController < ApplicationController
             # Redirect user show
         end
     end
+
+    get '/login' do
+        binding.pry
+        erb :'users/login'
+    end
+
 end

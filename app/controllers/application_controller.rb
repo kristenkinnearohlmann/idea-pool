@@ -2,7 +2,10 @@ class ApplicationController < Sinatra::Base
     # extends Sinatra with methods and Rake tasks for dealing
     # with SQL databses using ActiveRecord
     register Sinatra::ActiveRecordExtension
-    register Sinatra::Flash
+    # TODO: Implement Flash, it's frankly spooky because messages are getting written at invokation
+    # of the app, and they shouldn't. It's a bonus I would like to implement but it's not working
+    # as expected. Do last.
+    # register Sinatra::Flash
     
     # set up sessions
     # TODO: how to hide secret in the future
@@ -17,6 +20,7 @@ class ApplicationController < Sinatra::Base
     set :views, Proc.new { File.join(root, "../views/") }
 
     get '/' do
+        binding.pry
         erb :index
     end
 end
