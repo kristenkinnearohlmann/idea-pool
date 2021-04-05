@@ -1,17 +1,17 @@
 class UserController < ApplicationController
     
     get '/signup' do
-        erb :'users/signup'
+        if Helpers.is_logged_in?(session)
+            # TODO: Flash - You are already logged in
+            redirect "users/#{Helpers.current_user(session).id}"
+        else
+            erb :'users/signup'
+        end
     end
 
     post '/signup' do
         binding.pry
-        # puts params[:email]
-        if Helpers.is_logged_in?(session)
-            puts "Logged in"
-            # Flash already logged in
-            # Redirect user show
-        elsif user = User.find_by(email: params[:email])
+        if user = User.find_by(email: params[:email])
             redirect '/login'
         else
             puts "Make a user"
@@ -23,12 +23,12 @@ class UserController < ApplicationController
     end
 
     get '/login' do
-        binding.pry
+        # binding.pry
         erb :'users/login'
     end
 
     post '/login' do
-        binding.pry
+        # binding.pry
         user = User.find_by(email: params[:email])
 
         if user && user.authenticate(params[:password])
@@ -46,7 +46,7 @@ class UserController < ApplicationController
     end
 
     get '/users/:user_id' do
-        binding.pry
+        # binding.pry
         if Helpers.is_logged_in?(session) && Helpers.current_user(session).id == params[:user_id].to_i
             @user = Helpers.current_user(session)
             erb :'users/show'
