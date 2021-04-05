@@ -34,4 +34,9 @@ class UserController < ApplicationController
         # if invalid
     end
 
+    get '/logout' do
+        session.clear
+        redirect "/"
+    end
+
 end
