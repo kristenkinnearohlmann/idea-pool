@@ -23,20 +23,35 @@ class UserController < ApplicationController
     end
 
     get '/login' do
+        binding.pry
         erb :'users/login'
     end
 
     post '/login' do
         binding.pry
-        # check email
-        # check password
-        # if valid
-        # if invalid
+        user = User.find_by(email: params[:email])
+
+        if user && user.authenticate(params[:password])
+            session[:user_id] = user.id
+            redirect "users/#{user.id}"
+        else
+            # TODO: Flash msg - Invalid email or password
+            redirect '/login'
+        end
     end
 
     get '/logout' do
         session.clear
         redirect "/"
+    end
+
+    get '/users/:user_id' do
+        binding.pry
+        if Helpers.is_logged_in?(session) && Helpers.current_user(session).id == params[:user_id].to_i
+            erb :'users/show'
+        else
+            redirect '/login'
+        end
     end
 
 end
