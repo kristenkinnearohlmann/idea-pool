@@ -10,25 +10,26 @@ class UserController < ApplicationController
     end
 
     post '/signup' do
-        binding.pry
         if user = User.find_by(email: params[:email])
             redirect '/login'
         else
-            puts "Make a user"
-            # Validate email, password, name filled in
-            # Create user
-            # Set user_id in session
-            # Redirect user show
+            if params[:email] != "" && params[:password] != "" && params[:full_name] != ""
+                user = User.create(params)
+                session[:user_id] = user.id
+                redirect "users/#{user.id}"
+            else
+                # TODO: Flash - Please complete all fields
+                # TODO: Can I pass supplied params on redirect? Session?
+                redirect '/signup'
+            end
         end
     end
 
     get '/login' do
-        # binding.pry
         erb :'users/login'
     end
 
     post '/login' do
-        # binding.pry
         user = User.find_by(email: params[:email])
 
         if user && user.authenticate(params[:password])
@@ -46,7 +47,6 @@ class UserController < ApplicationController
     end
 
     get '/users/:user_id' do
-        # binding.pry
         if Helpers.is_logged_in?(session) && Helpers.current_user(session).id == params[:user_id].to_i
             @user = Helpers.current_user(session)
             erb :'users/show'
