@@ -9,5 +9,6 @@ Rack::MethodOverride
 
 use UserController
 use IdeaController
+use ProjectController
 
 run ApplicationController
