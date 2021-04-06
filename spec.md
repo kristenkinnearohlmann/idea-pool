@@ -17,7 +17,8 @@ _Users are identified by their email address._
 - [ ] Ensure that users can't modify content created by other users
 - [x] Include user input validations  
 _Validating form entries, authenticating password_
-- [ ] BONUS - not required - Display validation failures to user with error message (example form URL e.g. /posts/new)
+- [x] BONUS - not required - Display validation failures to user with error message (example form URL e.g. /posts/new)  
+_Added Sinatra Flash to give messages on certain conditions, such as an existing user trying to create a new account when checked by email address_
 - [x] Your README.md includes a short description, install instructions, a contributors guide and a link to the license for your code  
 _All items are included; I enjoyed crafting a contributor's guide which, while incomplete, starts to indicate what is desired in contributions._
 
