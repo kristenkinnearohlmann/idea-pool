@@ -5,7 +5,7 @@ class ApplicationController < Sinatra::Base
     # TODO: Implement Flash, it's frankly spooky because messages are getting written at invokation
     # of the app, and they shouldn't. It's a bonus I would like to implement but it's not working
     # as expected. Do last.
-    # register Sinatra::Flash
+    register Sinatra::Flash
     
     # set up sessions
     # TODO: how to hide secret in the future

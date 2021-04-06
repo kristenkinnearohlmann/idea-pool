@@ -1,6 +1,12 @@
 <form method="POST" action="/login">
-    <div class="credential-forms">
-        <p>Please log in to your account.</p>
+    <div class="credential-forms text-no-shadow">
+        <p>
+            <% if flash[:msg] %>
+                <%= flash[:msg] %>
+            <% else %>
+                Please log in to your account.
+            <% end %>
+        </p>
         <p>
             <label for="email">Email: </label><br/>
             <input type="email" id="email" name="email" required>

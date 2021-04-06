@@ -11,6 +11,7 @@ class UserController < ApplicationController
 
     post '/signup' do
         if user = User.find_by(email: params[:email])
+            flash.next[:msg] = "User exists. Please log in."
             redirect '/login'
         else
             if params[:email] != "" && params[:password] != "" && params[:full_name] != ""
@@ -18,8 +19,6 @@ class UserController < ApplicationController
                 session[:user_id] = user.id
                 redirect "users/#{user.id}"
             else
-                # TODO: Flash - Please complete all fields
-                # TODO: Can I pass supplied params on redirect? Session?
                 redirect '/signup'
             end
         end
