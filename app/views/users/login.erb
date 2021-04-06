@@ -2,10 +2,9 @@
     <div class="credential-forms text-no-shadow">
         <p>
             <% if flash[:msg] %>
-                <span class="flash-msg"><%= flash[:msg] %></span>
-            <% else %>
-                Please log in to your account.
+                <span class="flash-msg"><%= flash[:msg] %></span><br/>
             <% end %>
+            Please log in to your account.
         </p>
         <p>
             <label for="email">Email: </label><br/>
