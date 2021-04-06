@@ -52,6 +52,8 @@ header {
     font-size: 1.75em;
     margin: 0;
     font-weight: 700;
+    color: #db5a6b;
+    text-shadow: 2px 2px silver;
 }
 
 #app-content {
@@ -133,4 +135,21 @@ footer {
 .flash-msg {
     color: red;
     font-weight: bold;
+}
+
+.private-notification {
+    color: #8f6976;
+    font-style: italic;
+}
+
+a {
+    color: #008080;
+}
+
+a:hover {
+    color: #8f6976;
+}
+
+a:visited {
+    color: #96b2a8;
 }
