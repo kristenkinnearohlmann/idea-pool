@@ -55,14 +55,22 @@ header {
 }
 
 #app-content {
-    width: 80%;
+    width: 98vw;
     height: 85vh;
     margin: 0 auto;
     display: flex;
     justify-content: center;
-    color: #95edd7;
-    text-shadow: 2px 2px grey;
-    font-size: 1.25em;
+}
+
+#app-content > div {
+    width: 75vw;
+    background-color: white; 
+    opacity: 0.75;
+    color: rgb(105,105,105);
+    padding: 2em; 
+    text-align: left;
+    margin-top: 15px;
+    margin-bottom: 15px;
 }
 
 footer {

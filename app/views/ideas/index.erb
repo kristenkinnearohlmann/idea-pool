@@ -1,0 +1,10 @@
+<h1>Ideas</h1>
+<p>
+    These ideas have been made available by other registered users.
+</p>
+<% Idea.all.each do |idea| %>
+    <% if idea.is_private == false %>
+        <h3><%= idea.name %></h3>
+        <p><%= idea.description %></p>
+    <% end %>
+<% end %>

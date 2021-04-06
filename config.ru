@@ -8,5 +8,6 @@ require './config/environment'
 Rack::MethodOverride
 
 use UserController
+use IdeaController
 
 run ApplicationController
