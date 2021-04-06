@@ -3,25 +3,69 @@ html {
     background-size: cover;
     height: 100%;
     overflow: hidden;
+    font-family: 'Open Sans', sans-serif;
+
   }
 
 body {
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 700;
     margin: 0;
     padding: 0;
-    width: 100vw;
 }
 
 main {
+    max-width: 100vw;
+    display: flex;
+    flex-flow: row wrap;
+}
+
+header {
+    width: 100%;
+    height: 10vh;
+    margin: 0;
+    padding: 10px;
+    background-color: white;
+    opacity: 0.75;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.hero-header {
+    font-size: 1.75em;
+    margin: 0;
+    font-weight: 700;
+}
+
+#app-content {
+    width: 80%;
+    height: 80vh;
     margin: 0 auto;
-    max-width: 55%;
-    text-align: center;
-    overflow: auto;
+    display: flex;
+    justify-content: center;
+    color: greenyellow;
+    font-size: 1.25em;
 }
 
 footer {
     font-size: 0.75em;
+    width: 100%;
+    height: 5vh;
+    margin: 0;
+    padding: 10px;
+    background-color: white;
+    opacity: 0.75;
+}
+
+.nav-submit {
+    border: 1px solid grey; 
+    padding: 0.5em; 
+    background-color: white;
+    border-radius: .25em;
+    width: 7em;
+}
+
+.nav-submit:hover {
+    background-color: grey;
 }
 
 .input-submit {
@@ -29,6 +73,7 @@ footer {
     padding: 0.5em; 
     background-color: white;
     border-radius: .25em;
+    width: 7em;
 }
 
 .input-submit:hover {
@@ -37,9 +82,10 @@ footer {
 
 .credential-forms {
     width: 15vw; 
-    margin: 0 auto; 
-    padding: 2em; 
+    margin: 0 auto;
+    padding: 1em; 
     text-align: left; 
     background-color: white; 
     opacity: 0.75;
+    color: rgb(105,105,105);
 }

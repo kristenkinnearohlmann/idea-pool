@@ -10,17 +10,27 @@
     <body>
         <main>
             <header>
-                <h1 id="hero">Idea Pool</h1>
-                <h2>Take a dip and find an idea.</h2>
+                <div>
+                    <p class="hero-header">Idea Pool . . . take a dip and find an idea.</p>
+                </div>
+                <div>
+                    <% if !Helpers.is_logged_in?(session) %>
+                        <a href="/signup"><button class="nav-submit">Sign Up</button></a>
+                        <a href="/login"><button class="nav-submit">Log In</button></a>
+                    <% else %>
+                        <a href="/users/<%= Helpers.current_user(session).id %>"><button class="nav-submit">Account</button></a>
+                        <a href="/logout"><button class="nav-submit">Log Out</button></a>
+                    <% end %>
+                    <a href="/"><button class="nav-submit">Home</button></a>
+                </div>
             </header>
 
-            <section>
-                <%= yield %>
+            <section id="app-content">
+                <div>
+                    <%= yield %>
+                </div>
             </section>
 
-            <section>
-                <p><a href="/">Home</a> | <a href="/logout">Log Out</a></p>
-            </section>
             <footer>
                 <p>For more information or to contribute, see the <a href="https://github.com/kristenkinnearohlmann/idea-pool">GitHub repo</a> for this project</p>
             </footer>
