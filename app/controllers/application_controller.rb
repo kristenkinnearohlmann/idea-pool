@@ -2,9 +2,7 @@ class ApplicationController < Sinatra::Base
     # extends Sinatra with methods and Rake tasks for dealing
     # with SQL databses using ActiveRecord
     register Sinatra::ActiveRecordExtension
-    # TODO: Implement Flash, it's frankly spooky because messages are getting written at invokation
-    # of the app, and they shouldn't. It's a bonus I would like to implement but it's not working
-    # as expected. Do last.
+    # allow use of flash messages to update status on a failure or no access to resource
     register Sinatra::Flash
     
     # set up sessions

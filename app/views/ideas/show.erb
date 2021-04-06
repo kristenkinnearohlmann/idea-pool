@@ -1,0 +1,16 @@
+<h1>Idea: <%= @idea.name %></h1>
+<p>
+    Submitted by: <%= @idea.user.full_name %><br/>
+    Description: <%= @idea.description %>
+</p>
+
+<h2>Related Projects</h2>
+<p>
+    <% if @idea.projects.count == 0 %>
+        No projects have yet been created for this idea.
+    <% else %>
+        <% @idea.projects.each do |project| %>
+            <%= project.name %><br/>
+        <% end %>
+    <% end %>
+</p>

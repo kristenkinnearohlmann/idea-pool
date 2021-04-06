@@ -2,7 +2,7 @@
     <div class="credential-forms text-no-shadow">
         <p>
             <% if flash[:msg] %>
-                <%= flash[:msg] %>
+                <span class="flash-msg"><%= flash[:msg] %></span>
             <% else %>
                 Please log in to your account.
             <% end %>

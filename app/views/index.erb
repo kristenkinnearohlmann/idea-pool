@@ -8,5 +8,6 @@
     Great ideas are added all the time!
 </p>
 <p>
-    How about . . . <%= Idea.last.name %>? Or <a href="/ideas">view all ideas</a>.
+    <% idea = Idea.last %>
+    How about . . . <a href="/ideas/<%= idea.id %>"><%= idea.name %></a>? Or <a href="/ideas">view all ideas</a>.
 <p>

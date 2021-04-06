@@ -129,3 +129,8 @@ footer {
     border: 1px solid black;
     width: 25vw;
 }
+
+.flash-msg {
+    color: red;
+    font-weight: bold;
+}
