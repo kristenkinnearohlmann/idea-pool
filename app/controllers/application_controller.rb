@@ -10,6 +10,7 @@ class ApplicationController < Sinatra::Base
     # set up sessions
     # TODO: how to hide secret in the future
     configure do
+        # ensures that the css and images assets can be accessed (thanks Taylor!)
         set :public_folder, 'public'
         enable :sessions
         set :session_secret, "vJHqHCgewkv7N9NE"

@@ -23,3 +23,23 @@ main {
 footer {
     font-size: 0.75em;
 }
+
+.input-submit {
+    border: 1px solid grey; 
+    padding: 0.5em; 
+    background-color: white;
+    border-radius: .25em;
+}
+
+.input-submit:hover {
+    background-color: grey;
+}
+
+.credential-forms {
+    width: 15vw; 
+    margin: 0 auto; 
+    padding: 2em; 
+    text-align: left; 
+    background-color: white; 
+    opacity: 0.75;
+}
