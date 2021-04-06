@@ -42,6 +42,7 @@ class UserController < ApplicationController
 
     get '/logout' do
         session.clear
+        flash.next[:msg] = "You are now logged out."
         redirect "/"
     end
 

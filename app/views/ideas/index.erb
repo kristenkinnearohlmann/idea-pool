@@ -7,7 +7,7 @@
 </p>
 <ul>
     <% Idea.all.sort_by{|idea| idea.name}.each do |idea| %>
-        <% if idea.is_private == false %>
+        <% if idea.is_private == false || (idea.is_private == true && Helpers.is_logged_in?(session) && Helpers.current_user(session) == idea.user) %>
             <li><a href="/ideas/<%= idea.id %>"><%= idea.name %></a>: <%= idea.description %></li>
         <% end %>
     <% end %>

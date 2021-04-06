@@ -6,7 +6,6 @@ class IdeaController < ApplicationController
     
     get '/ideas/:id' do
         @idea = Idea.find(params[:id])
-
         if @idea.is_private == false || (@idea.is_private == true && Helpers.is_logged_in?(session) && Helpers.current_user(session) == @idea.user)
             erb :'ideas/show'
         else
