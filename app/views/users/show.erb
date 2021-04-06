@@ -1,1 +1,18 @@
-<p>Hello <%= @user.full_name %>!</p>
+<div>
+    <p>
+        <% if flash[:msg] %>
+            <%= flash[:msg] %>
+        <% end %>
+        <h2>Your current pool</h2>
+    </p>
+</div>
+<div class="cols">
+    <div>
+        <p>Ideas</p>
+        <%= @user.ideas.first.name %>
+    </div>
+    <div>
+        <p>Projects</p>
+        <%= @user.projects.first.name %>
+    </div>
+</div>

@@ -2,7 +2,7 @@ class UserController < ApplicationController
     
     get '/signup' do
         if Helpers.is_logged_in?(session)
-            # TODO: Flash - You are already logged in
+            flash.next[:msg] = "You are already logged in."
             redirect "users/#{Helpers.current_user(session).id}"
         else
             erb :'users/signup'

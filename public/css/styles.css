@@ -118,6 +118,14 @@ footer {
     color: rgb(105,105,105);
 }
 
-.text-no-shadow {
-    text-shadow: none;
+.cols {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-evenly;
+}
+
+.cols > div {
+    padding: 5px 20px;
+    border: 1px solid black;
+    width: 25vw;
 }
