@@ -42,7 +42,8 @@ header {
     margin: 0 auto;
     display: flex;
     justify-content: center;
-    color: greenyellow;
+    color: #95edd7;
+    text-shadow: 2px 2px grey;
     font-size: 1.25em;
 }
 
@@ -83,6 +84,7 @@ footer {
 .credential-forms {
     width: 15vw; 
     margin: 0 auto;
+    margin-top: 15px;
     padding: 1em; 
     text-align: left; 
     background-color: white; 
