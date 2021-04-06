@@ -15,7 +15,12 @@
 <p>
     Great ideas are added all the time!
 </p>
-<p>
-    <% idea = Idea.last %>
-    How about . . . <a href="/ideas/<%= idea.id %>"><%= idea.name %></a>? Or <a href="/ideas">view all ideas</a>.
-<p>
+<div id="main-display">
+    <% ideas = Idea.where(is_private: false).limit(3).order('id desc') %>
+    <% ideas.sort_by{|idea| idea.name}.each do |idea| %>
+        <div>
+            <h4><%= idea.name %></h4>
+            <p><%= idea.description %><p>
+        </div>
+    <% end %>
+</div>
