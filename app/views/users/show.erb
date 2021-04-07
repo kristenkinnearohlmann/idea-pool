@@ -8,11 +8,23 @@
 </div>
 <div class="cols">
     <div>
-        <p>Ideas</p>
-        <%= @user.ideas.first.name %>
+        <h2>Ideas</h2>
+        <p>
+            <% if @user.ideas.count == 0 %>
+                You don't have any ideas entered yet.
+            <% else %>
+                <%= @user.ideas.first.name %>
+            <% end %>
+        </p>
     </div>
     <div>
-        <p>Projects</p>
-        <%= @user.projects.first.name %>
+        <h2>Projects</h2>
+        <p>
+            <% if @user.projects.count == 0 %>
+                You don't have any projects entered yet.
+            <% else %>
+                <%= @user.projects.first.name %>
+            <% end %>
+        </p>
     </div>
 </div>

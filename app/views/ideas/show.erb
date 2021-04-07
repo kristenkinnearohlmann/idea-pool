@@ -1,17 +1,27 @@
-<p class="private-notification">This idea is marked private.</p>
-<h1>Idea: <%= @idea.name %></h1>
-<p>
-    Submitted by: <%= @idea.user.full_name %><br/>
-    Description: <%= @idea.description %>
-</p>
-
-<h2>Related Projects</h2>
-<p>
-    <% if @idea.projects.count == 0 %>
-        No projects have yet been created for this idea.
-    <% else %>
-        <% @idea.projects.each do |project| %>
-            <%= project.name %><br/>
-        <% end %>
+<div class="private-notification">
+    <% if @idea.is_private == true %>
+        <p>This idea is marked private.</p>
     <% end %>
-</p>
+</div>
+    <div>
+    <h1>Idea: <%= @idea.name %></h1>
+    <p>
+        <span class="bold">Submitted by:</span> <%= @idea.user.full_name %><br/>
+        <span class="bold">Description:</span> <%= @idea.description %><br/>
+        <span class="bold">Created:</span> <%= @idea.created_at %>
+    </p>
+</div>
+<div>
+    <h2>Related Projects</h2>
+    <p>
+        <% if @idea.projects.count == 0 %>
+            No projects have yet been created for this idea.
+        <% else %>
+            <% @idea.projects.each do |project| %>
+                <% if project.is_private == false || (project.is_private == true && Helpers.is_logged_in?(session) && Helpers.current_user(session) == project.user) %>
+                    <%= project.name %><br/>
+                <% end %>
+            <% end %>
+        <% end %>
+    </p>
+</div>

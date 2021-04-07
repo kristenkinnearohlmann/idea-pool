@@ -19,7 +19,7 @@
     <% ideas = Idea.where(is_private: false).limit(3).order('id desc') %>
     <% ideas.sort_by{|idea| idea.name}.each do |idea| %>
         <div>
-            <h4><%= idea.name %></h4>
+            <h4><a href="/ideas/<%= idea.id %>"><%= idea.name %></a></h4>
             <p><%= idea.description %><p>
         </div>
     <% end %>
