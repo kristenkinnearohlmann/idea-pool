@@ -3,11 +3,12 @@
     <span class="flash-msg"><%= flash[:msg] %></span>
 <% end %>
 <p>
-    These ideas have been made available by other registered users. Visit an idea to see associated projects.
+    These ideas have been made available by other registered users. Visit an idea to see associated projects.<br/>
+    Your ideas marked as <em>private</em> will appear on your account dashboard.
 </p>
 <div class="category-display">
     <% Idea.all.sort_by{|idea| idea.name}.each do |idea| %>
-        <% if idea.is_private == false || (idea.is_private == true && Helpers.is_logged_in?(session) && Helpers.current_user(session) == idea.user) %>
+        <% if idea.is_private == false %>
             <div>
                 <h4><a href="/ideas/<%= idea.id %>"><%= idea.name %></a></h4>
                 <p><%= idea.description %><p>
