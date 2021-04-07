@@ -1,5 +1,10 @@
 <form method="POST" action="/signup">
     <div class="credential-forms text-no-shadow">
+        <p>
+            <% if flash[:msg] %>
+            <span class="flash-msg"><%= flash[:msg] %></span>
+            <% end %>
+        </p>
         <p>Sign up for a new account.</p>
         <p>
             <label for="email">Email: </label><br/>

@@ -15,9 +15,19 @@ class UserController < ApplicationController
             redirect '/login'
         else
             if params[:email] != "" && params[:password] != "" && params[:full_name] != ""
-                user = User.create(params)
-                session[:user_id] = user.id
-                redirect "users/#{user.id}"
+                user = User.new(params)
+                if user.valid?
+                    user.save
+                    session[:user_id] = user.id
+                    redirect "users/#{user.id}"
+                else
+                    errors = ""
+                    user.errors.each do |error|
+                        errors += "#{error.to_s.gsub("_"," ").capitalize} #{user.errors[error][0]}\n"
+                    end
+                    flash.next[:msg] = errors
+                    redirect '/signup'
+                end
             else
                 redirect '/signup'
             end
