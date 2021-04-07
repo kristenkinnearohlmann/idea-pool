@@ -13,15 +13,24 @@
 </div>
 <div>
     <h2>Related Projects</h2>
-    <p>
+    <div>
         <% if @idea.projects.count == 0 %>
             No projects have yet been created for this idea.
+        <% elsif @idea.projects.count == @idea.projects.where(is_private: true).count  %>
+            No public projects for this idea.
         <% else %>
-            <% @idea.projects.each do |project| %>
-                <% if project.is_private == false || (project.is_private == true && Helpers.is_logged_in?(session) && Helpers.current_user(session) == project.user) %>
-                    <%= project.name %><br/>
+            <div class="category-display">
+                <% @idea.projects.each do |project| %>
+                    <% if project.is_private == false || (project.is_private == true && Helpers.is_logged_in?(session) && Helpers.current_user(session) == project.user) %>
+                        <div>
+                            <h4>
+                                <a href="/projects/<%= project.id %>"><%= project.name %></a> <% if project.is_private == true %>(<em>private</em>)<% end %>
+                            </h4>
+                            <p><%= project.description %></p>
+                        </div>
+                    <% end %>
                 <% end %>
-            <% end %>
+            </div>
         <% end %>
-    </p>
+    </div>
 </div>
