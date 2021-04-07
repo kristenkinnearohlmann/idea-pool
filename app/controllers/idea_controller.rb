@@ -3,6 +3,15 @@ class IdeaController < ApplicationController
     get '/ideas' do
         erb :'ideas/index'
     end
+
+    get '/ideas/new' do
+        if Helpers.is_logged_in?(session)
+            erb :'ideas/new'
+        else
+            flash.next[:msg] = "You must be logged in to create an idea."
+            redirect '/ideas'
+        end
+    end
     
     get '/ideas/:id' do
         @idea = Idea.find(params[:id])

@@ -4,6 +4,15 @@ class ProjectController < ApplicationController
         erb :'projects/index'
     end
 
+    get '/projects/new' do
+        if Helpers.is_logged_in?(session)
+            erb :'projects/new'
+        else
+            flash.next[:msg] = "You must be logged in to create a project."
+            redirect '/projects'
+        end
+    end
+
     get '/projects/:id' do
         @project = Project.find(params[:id])
         if @project.is_private == false || (@project.is_private == true && Helpers.is_logged_in?(session) && Helpers.current_user(session) == @project.user)

@@ -15,7 +15,14 @@
 </div>
 <div class="category-display">
     <div>
-        <h2>Ideas</h2>
+        <div class="subheader-contains-button">
+            <div>
+                <h2>Ideas</h2>
+            </div>
+            <div class="subheader-contains-button-child">
+                <a href="/ideas/new"><button class="nav-submit">Create</button></a>
+            </div>
+        </div>
         <p>
             <% if @user.ideas.count == 0 %>
                 You don't have any ideas entered yet.
@@ -32,7 +39,14 @@
         </p>
     </div>
     <div>
-        <h2>Projects</h2>
+        <div class="subheader-contains-button">
+            <div>
+                <h2>Projects</h2>
+            </div>
+            <div class="subheader-contains-button-child">
+                <a href="/projects/new"><button class="nav-submit">Create</button></a>
+            </div>
+        </div>
         <p>
             <% if @user.projects.count == 0 %>
                 You don't have any projects entered yet.

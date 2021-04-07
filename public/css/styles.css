@@ -48,6 +48,17 @@ header {
     padding: 0;
 }
 
+.subheader-contains-button {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.subheader-contains-button > .subheader-contains-button-child {
+    margin-left: 2em;
+}
+
 .hero-header {
     font-size: 1.75em;
     margin: 0;

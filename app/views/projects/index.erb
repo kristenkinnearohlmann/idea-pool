@@ -1,4 +1,15 @@
-<h1>Projects</h1>
+<div>
+    <div class="subheader-contains-button">
+        <div>
+            <h1>Projects</h1>
+        </div>
+        <div class="subheader-contains-button-child">
+            <% if Helpers.is_logged_in?(session) %>
+                <a href="/projects/new"><button class="nav-submit">Create</button></a>
+            <% end %>
+        </div>
+    </div>
+</div>
 <% if flash[:msg] %>
     <span class="flash-msg"><%= flash[:msg] %></span>
 <% end %>
