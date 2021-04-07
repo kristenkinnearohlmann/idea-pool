@@ -123,8 +123,6 @@ footer {
 .credential-forms {
     width: 25vw; 
     margin: 0 auto;
-    margin-top: 15px;
-    padding: 1em; 
     text-align: left; 
     background-color: white; 
     opacity: 0.75;
@@ -188,4 +186,15 @@ a:visited {
 
 .bold {
     font-weight: bold;
+}
+
+.create-item-textarea {
+    width: 30em;
+    height: 9em;
+    resize: none;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.create-item-input {
+    width: 30em;
 }
