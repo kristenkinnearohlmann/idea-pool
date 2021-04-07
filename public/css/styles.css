@@ -154,19 +154,24 @@ a:visited {
     color: #96b2a8;
 }
 
-#main-display {
+.main-display {
     display: flex;
     flex-flow: row nowrap;
 }
 
-#main-display > div {
+.category-display {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.main-display > div, .category-display > div {
     border: 1px solid silver;
     width: 33%;
     margin: 5px;
     padding: 5px;
 }
 
-#main-display > div > p {
+.main-display > div > p, .category-display > div > p {
     font-style: italic;
 }
 

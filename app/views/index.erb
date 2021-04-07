@@ -15,7 +15,7 @@
 <p>
     Great ideas are added all the time!
 </p>
-<div id="main-display">
+<div class="main-display">
     <% ideas = Idea.where(is_private: false).limit(3).order('id desc') %>
     <% ideas.sort_by{|idea| idea.name}.each do |idea| %>
         <div>
