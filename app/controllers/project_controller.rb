@@ -4,6 +4,15 @@ class ProjectController < ApplicationController
         erb :'projects/index'
     end
 
+    post '/projects' do
+        # Remove once validation/create are complete
+        puts "In projects POST"
+        puts params
+        redirect '/'
+        # Put final code below
+        # Add "fix" code to add :in_private to params
+    end
+
     get '/projects/new' do
         if Helpers.is_logged_in?(session)
             erb :'projects/new'

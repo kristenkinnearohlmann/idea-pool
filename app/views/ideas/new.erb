@@ -1,1 +1,14 @@
-Form for new idea
+<form method="POST" action="/ideas">
+    <div class="credential-forms">
+        <h2>Create a new idea</h2>
+        <p>
+            <label for="idea_name">Name: </label>
+            <input type="text" id="idea_name" name="idea[name]">
+        </p>
+        <p>
+            <input type="checkbox" id="is_private" name="idea[is_private]">
+            <label for="is_private">Private</label>
+        </p>
+        <input type="submit" value="Create Idea" class="input-submit">
+    </div>
+</form>

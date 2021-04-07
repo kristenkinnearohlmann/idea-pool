@@ -1,1 +1,14 @@
-For for new project
+<form method="POST" action="/projects">
+    <div class="credential-forms">
+        <h2>Create a new project</h2>
+        <p>
+            <label for="project_name">Name: </label>
+            <input type="text" id="project_name" name="project[name]">
+        </p>
+        <p>
+            <input type="checkbox" id="is_private" name="idea[is_private]">
+            <label for="is_private">Private</label>
+        </p>        
+        <input type="submit" value="Create Project" class="input-submit">
+    </div>
+</form>

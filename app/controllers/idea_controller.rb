@@ -4,6 +4,15 @@ class IdeaController < ApplicationController
         erb :'ideas/index'
     end
 
+    post '/ideas' do
+        # Remove once validation/create are complete
+        puts "In ideas POST"
+        puts params
+        redirect '/'
+        # Put final code below
+        # Add "fix" code to add :in_private to params
+    end
+
     get '/ideas/new' do
         if Helpers.is_logged_in?(session)
             erb :'ideas/new'
