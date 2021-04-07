@@ -3,17 +3,31 @@
         <% if flash[:msg] %>
             <span class="flash-msg"><%= flash[:msg] %></span>
         <% end %>
-        <h2>Your current pool</h2>
     </p>
 </div>
-<div class="cols">
+<div>
+<h2>Account Details</h2>
+<p>
+    <span class="bold">Full Name:</span> <%= @user.full_name %><br/>
+    <span class="bold">Email:</span> <%= @user.email %><br/>
+    <span class="bold">Joined:</span> <%= @user.created_at %>
+</p>
+</div>
+<div class="category-display">
     <div>
         <h2>Ideas</h2>
         <p>
             <% if @user.ideas.count == 0 %>
                 You don't have any ideas entered yet.
             <% else %>
-                <%= @user.ideas.first.name %>
+                <% @user.ideas.each do |idea| %>
+                    <div>
+                        <h4>
+                            <a href="/ideas/<%= idea.id %>"><%= idea.name %></a> <% if idea.is_private == true %>(<em>private</em>)<% end %>
+                        </h4>
+                        <p><%= idea.description %></p>
+                    </div>
+                <% end %>
             <% end %>
         </p>
     </div>
@@ -23,7 +37,14 @@
             <% if @user.projects.count == 0 %>
                 You don't have any projects entered yet.
             <% else %>
-                <%= @user.projects.first.name %>
+                <% @user.projects.each do |project| %>
+                    <div>
+                        <h4>
+                            <a href="/projects/<%= project.id %>"><%= project.name %></a> <% if project.is_private == true %>(<em>private</em>)<% end %>
+                        </h4>
+                        <p><%= project.description %></p>
+                    </div>
+                <% end %>
             <% end %>
         </p>
     </div>

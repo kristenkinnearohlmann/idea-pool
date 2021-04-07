@@ -73,6 +73,7 @@ header {
     text-align: left;
     margin-top: 15px;
     margin-bottom: 15px;
+    overflow: auto;
 }
 
 footer {
