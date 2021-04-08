@@ -5,17 +5,20 @@
             <span class="flash-msg"><%= flash[:msg] %></span>
             <% end %>
         </p>
-        <p>Sign up for a new account.</p>
         <p>
-            <label for="email">Email: </label><br/>
+            Sign up for a new account.<br/>
+            <span class="required-value">* indicates required fields</span>
+        </p>
+        <p>
+            <label for="email">Email: </label><span class="required-value">*</span><br/>
             <input type="email" id="email" name="email" required>
         </p>
         <p>
-            <label for="password">Password: </label><br/>
+            <label for="password">Password: </label><span class="required-value">*</span><br/>
             <input type="password" id="password" name="password" required>
         </p>
         <p>
-            <label for="full_name">Full Name: </label><br/>
+            <label for="full_name">Full Name: </label><span class="required-value">*</span><br/>
             <input type="text" id="full_name" name="full_name" required>
         </p>
         <input type="submit" value="Create User" class="input-submit">

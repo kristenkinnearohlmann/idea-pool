@@ -1,12 +1,13 @@
 <form method="POST" action="/projects">
     <div class="credential-forms">
         <h2>Create a new project</h2>
+        <p><span class="required-value">* indicates required fields</span></p>
         <p>
-            <label for="project_name">Name: </label><br/>
+            <label for="project_name">Name: </label><span class="required-value">*</span><br/>
             <input type="text" id="project_name" name="project[name]" class="create-item-input">
         </p>
         <p>
-            <label for="project_description">Description: </label><br/>
+            <label for="project_description">Description: </label><span class="required-value">*</span><br/>
             <textarea id="project_description" name="project[description]" class="create-item-textarea"></textarea>
         </p>
         <p>
@@ -22,7 +23,11 @@
             <label for="is_private">Private</label>
         </p>
         <p>
-            <p>Associated idea</p>
+            <p>
+            Source idea <span class="required-value">*</span><br/>
+            Choose an named idea or select "New idea" and complete the fields below
+            </p>
+            <p>
                 <% Idea.all.sort_by{|idea| idea.name}.each do |idea| %>
                     <% if idea.is_private == false || (idea.is_private == true && Helpers.is_logged_in?(session) && Helpers.current_user(session) == idea.user) %>
                         <div>
@@ -35,7 +40,6 @@
                     <input type="radio" id="idea_new" name="idea[id]" value="-1">
                     <label for="idea_new">New idea (enter below)</label>
                 </div>
-            <p>New idea</p>
                 <p>
                     <label for="idea_name">Name: </label><br/>
                     <input type="text" id="idea_name" name="idea[name]" class="create-item-input">

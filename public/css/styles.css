@@ -198,3 +198,8 @@ a:visited {
 .create-item-input {
     width: 30em;
 }
+
+.required-value {
+    color: red;
+    font-weight: bold;
+}
