@@ -74,7 +74,8 @@ class ProjectController < ApplicationController
         project = Project.find(params[:id])
 
         if Helpers.is_logged_in?(session) && Helpers.current_user(session).id == project.user_id
-            project.delete
+            # destroy fires the callback dependent in project model, delete would be just the target table
+            project.destroy
             flash.next[:msg] = "Project deleted"
             redirect '/projects'
         else
