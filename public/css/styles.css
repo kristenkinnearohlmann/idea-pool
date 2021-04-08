@@ -203,3 +203,12 @@ a:visited {
     color: red;
     font-weight: bold;
 }
+
+.edit-delete {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.edit-delete > div > form {
+    margin-left: 2em;
+}

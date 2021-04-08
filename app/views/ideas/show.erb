@@ -15,12 +15,19 @@
         <span class="bold">Description:</span> <%= @idea.description %><br/>
         <span class="bold">Created:</span> <%= @idea.created_at %>
     </p>
-    <p>
-        <% if Helpers.is_logged_in?(session) %>
-            <a href="/ideas/<%= @idea.id %>/edit"><button class="nav-submit">Edit</button></a>
-            <button class="nav-submit">Delete</button>
-        <% end %>
-    </p>
+    <% if Helpers.is_logged_in?(session) %>
+        <div class="edit-delete">
+            <div>
+                <a href="/ideas/<%= @idea.id %>/edit"><button class="nav-submit">Edit</button></a>
+            </div>
+            <div>
+                <form method="POST" action="/ideas/<%= @idea.id %>">
+                    <input type="hidden" id="hidden" name="_method" value="DELETE">
+                    <button class="nav-submit">Delete</button>
+                </form>
+            </div>
+        </div>
+    <% end %>
 </div>
 <div>
     <h2>Related Projects</h2>

@@ -87,4 +87,21 @@ class IdeaController < ApplicationController
         end
     end
 
+    delete '/ideas/:id' do
+        idea = Idea.find(params[:id])
+        if Helpers.is_logged_in?(session) && Helpers.current_user(session).id == idea.user_id
+            if idea.projects.count != 0
+                flash.next[:msg] = "This idea is attached to one or more projects and cannot be deleted."
+                redirect "/ideas/#{idea.id}"
+            else
+                idea.delete
+                flash.next[:msg] = "Idea deleted"
+                redirect '/ideas'
+            end
+        else
+            flash.next[:msg] = "You must be the owner to delete an idea."
+            redirect "/ideas/#{idea.id}"
+        end
+    end
+
 end
