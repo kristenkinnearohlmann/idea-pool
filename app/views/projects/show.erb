@@ -1,3 +1,8 @@
+<div>
+    <% if flash[:msg] %>
+        <span class="flash-msg"><%= flash[:msg] %></span>
+    <% end %>
+</div>
 <div class="private-notification">
     <% if @project.is_private == true %>
         <p>This project is marked private.</p>
@@ -19,3 +24,16 @@
         <span class="bold">Based on:</span> <a href="/ideas/<%= @project.ideas[0].id %>"><%= @project.ideas[0].name %></a> submitted by <%= @project.ideas[0].user.full_name %><br/>
     </p>
 </div>
+<% if Helpers.is_logged_in?(session) %>
+    <div class="edit-delete">
+        <div>
+            <a href="/projects/<%= @project.id %>/edit"><button class="nav-submit">Edit</button></a>
+        </div>
+        <div>
+            <form method="POST" action="/projects/<%= @project.id %>">
+                <input type="hidden" id="hidden" name="_method" value="DELETE">
+                <button class="nav-submit">Delete</button>
+            </form>
+        </div>
+    </div>
+<% end %>
