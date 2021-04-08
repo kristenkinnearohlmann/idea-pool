@@ -1,0 +1,25 @@
+<form method="POST" action="/ideas/<%= @idea.id %>">
+    <input type="hidden" id="hidden" name="_method" value="PATCH">
+    <div class="credential-forms">
+        <p>
+            <% if flash[:msg] %>
+                <span class="flash-msg"><%= flash[:msg] %></span>
+            <% end %>
+        </p>
+        <h2>Edit idea</h2>
+        <p><span class="required-value">* indicates required fields</span></p>
+        <p>
+            <label for="idea_name">Name: </label><span class="required-value">*</span><br/>
+            <input type="text" id="idea_name" name="idea[name]" class="create-item-input" value="<%= @idea.name %>">
+        </p>
+        <p>
+            <label for="idea_description">Description: </label><span class="required-value">*</span><br/>
+            <textarea id="idea_description" name="idea[description]" class="create-item-textarea"><%= @idea.description %></textarea>
+        </p>
+        <p>
+            <input type="checkbox" id="is_private" name="idea[is_private]" <%= 'checked' if @idea.is_private == true %>>
+            <label for="is_private">Private</label>
+        </p>
+        <input type="submit" value="Edit Idea" class="input-submit">
+    </div>
+</form>

@@ -38,12 +38,51 @@ class IdeaController < ApplicationController
         end
     end
     
+    get '/ideas/:id/edit' do
+        if Helpers.is_logged_in?(session)
+            @idea = Idea.find(params[:id])
+
+            if @idea.user_id == session[:user_id]
+                erb :'ideas/edit'
+            else
+                flash.next[:msg] = "You must be the idea owner to edit."
+                redirect "/ideas/#{params[:id]}"
+            end
+        else
+            flash.next[:msg] = "You must be logged in to edit an idea."
+            redirect '/login'
+        end
+    end
+
     get '/ideas/:id' do
         @idea = Idea.find(params[:id])
         if @idea.is_private == false || (@idea.is_private == true && Helpers.is_logged_in?(session) && Helpers.current_user(session) == @idea.user)
             erb :'ideas/show'
         else
             flash.next[:msg] = "You do not have access to that idea. Please select an idea below."
+            redirect '/ideas'
+        end
+    end
+
+    patch '/ideas/:id' do
+        idea = Idea.find(params[:id])
+        # If in_private is not checked, add as false, otherwise update as true
+        if !params[:idea].keys.include?("is_private")
+            params[:idea][:is_private] = false
+        else
+            params[:idea][:is_private] = true
+        end
+
+        if Helpers.current_user(session).id == idea.user_id
+            idea.name = params[:idea][:name]
+            idea.description = params[:idea][:description]
+            idea.is_private = params[:idea][:is_private]
+            idea.save
+
+            flash.next[:msg] = "Idea updated"
+            redirect "/ideas/#{idea.id}"
+        else
+            flash.next[:msg] = "You must be the idea owner to edit."
             redirect '/ideas'
         end
     end

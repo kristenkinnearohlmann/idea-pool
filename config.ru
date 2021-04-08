@@ -5,7 +5,7 @@
 require './config/environment'
 
 # allows use of PATCH and DELETE routes
-Rack::MethodOverride
+use Rack::MethodOverride
 
 use UserController
 use IdeaController

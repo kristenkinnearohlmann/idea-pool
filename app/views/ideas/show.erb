@@ -1,3 +1,8 @@
+<div>
+    <% if flash[:msg] %>
+        <span class="flash-msg"><%= flash[:msg] %></span>
+    <% end %>
+</div>
 <div class="private-notification">
     <% if @idea.is_private == true %>
         <p>This idea is marked private.</p>
@@ -9,6 +14,12 @@
         <span class="bold">Submitted by:</span> <%= @idea.user.full_name %><br/>
         <span class="bold">Description:</span> <%= @idea.description %><br/>
         <span class="bold">Created:</span> <%= @idea.created_at %>
+    </p>
+    <p>
+        <% if Helpers.is_logged_in?(session) %>
+            <a href="/ideas/<%= @idea.id %>/edit"><button class="nav-submit">Edit</button></a>
+            <button class="nav-submit">Delete</button>
+        <% end %>
     </p>
 </div>
 <div>
