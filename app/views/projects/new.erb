@@ -10,6 +10,18 @@
             <textarea id="project_description" name="project[description]" class="create-item-textarea"></textarea>
         </p>
         <p>
+            <label for="main_language">Main language: </label><br/>
+            <input type="text" id="main_language" name="project[main_language]" class="create-item-input">
+        </p>
+        <p>
+            <label for="github_repo">GitHub repo: </label><br/>
+            <input type="text" id="github_repo" name="project[github_repo]" class="create-item-input">
+        </p>
+        <p>
+            <input type="checkbox" id="is_private" name="project[is_private]">
+            <label for="is_private">Private</label>
+        </p>
+        <p>
             <p>Associated idea</p>
                 <% Idea.all.sort_by{|idea| idea.name}.each do |idea| %>
                     <% if idea.is_private == false || (idea.is_private == true && Helpers.is_logged_in?(session) && Helpers.current_user(session) == idea.user) %>
@@ -20,7 +32,7 @@
                     <% end %>
                 <% end %>
                 <div>
-                    <input type="radio" id="idea_new" name="idea_new" value="idea_new">
+                    <input type="radio" id="idea_new" name="idea[id]" value="-1">
                     <label for="idea_new">New idea (enter below)</label>
                 </div>
             <p>New idea</p>
@@ -32,19 +44,11 @@
                     <label for="idea_description">Description: </label><br/>
                     <textarea id="idea_description" name="idea[description]" class="create-item-textarea"></textarea>
                 </p>
+                <p>
+                    <input type="checkbox" id="is_private_idea" name="idea[is_private]">
+                    <label for="is_private_idea">Private</label>
+                </p>
         </p>
-        <p>
-            <label for="main_language">Main language: </label><br/>
-            <input type="text" id="main_language" name="project[main_language]" class="create-item-input">
-        </p>
-        <p>
-            <label for="github_repo">GitHub repo: </label><br/>
-            <input type="text" id="github_repo" name="project[github_repo]" class="create-item-input">
-        </p>
-        <p>
-            <input type="checkbox" id="is_private" name="project[is_private]">
-            <label for="is_private">Private</label>
-        </p>        
         <input type="submit" value="Create Project" class="input-submit">
     </div>
 </form>
