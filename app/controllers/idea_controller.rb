@@ -5,12 +5,28 @@ class IdeaController < ApplicationController
     end
 
     post '/ideas' do
-        # Remove once validation/create are complete
-        puts "In ideas POST"
-        puts params
-        redirect '/'
-        # Put final code below
-        # Add "fix" code to add :in_private to params
+        if !Helpers.is_logged_in?(session)
+            flash.next[:msg] = "You must be logged in to perform this action."
+            redirect '/login'
+        else
+            user = User.find(session[:user_id])
+
+            # If in_private is not checked, add as false, otherwise update as true
+            if !params[:idea].keys.include?("is_private")
+                params[:idea][:is_private] = false
+            else
+                params[:idea][:is_private] = true
+            end
+
+            idea = Idea.new(params[:idea])
+            if idea.valid?
+                user.ideas << idea
+                redirect "/ideas/#{idea.id}"
+            else
+                flash.next[:msg] = Helpers.build_error_msg(idea.errors).join(", ")
+                redirect '/ideas/new'
+            end
+        end
     end
 
     get '/ideas/new' do

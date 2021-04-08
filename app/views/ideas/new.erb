@@ -1,5 +1,10 @@
 <form method="POST" action="/ideas">
     <div class="credential-forms">
+        <p>
+            <% if flash[:msg] %>
+                <span class="flash-msg"><%= flash[:msg] %></span>
+            <% end %>
+        </p>
         <h2>Create a new idea</h2>
         <p><span class="required-value">* indicates required fields</span></p>
         <p>
