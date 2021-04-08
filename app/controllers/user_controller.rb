@@ -21,11 +21,7 @@ class UserController < ApplicationController
                     session[:user_id] = user.id
                     redirect "users/#{user.id}"
                 else
-                    errors = ""
-                    user.errors.each do |error|
-                        errors += "#{error.to_s.gsub("_"," ").capitalize} #{user.errors[error][0]}\n"
-                    end
-                    flash.next[:msg] = errors
+                    flash.next[:msg] = Helpers.build_error_msg(user.errors).join(", ")
                     redirect '/signup'
                 end
             else
