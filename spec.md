@@ -11,10 +11,12 @@ _I included models for User, Idea, Project, and IdeaProject to correlate to my a
 _User `has_many` ideas and projects._
 - [x] Include at least one belongs_to relationship on another model (e.g. Post belongs_to User)  
 _Both idea and project `belongs_to` user._
-- [x] Include user accounts with unique login attribute (username or email)
+- [x] Include user accounts with unique login attribute (username or email)  
 _Users are identified by their email address._
-- [ ] Ensure that the belongs_to resource has routes for Creating, Reading, Updating and Destroying
-- [ ] Ensure that users can't modify content created by other users
+- [x] Ensure that the belongs_to resource has routes for Creating, Reading, Updating and Destroying  
+_Routes were created for both ideas and projects to create, read, update and destroy__
+- [x] Ensure that users can't modify content created by other users  
+_Checking both that a user is logged in before seeing buttons or manipulating data, as well as that the owner of the data is the requestor of the action__
 - [x] Include user input validations  
 _Validating form entries, authenticating password, model validation_
 - [x] BONUS - not required - Display validation failures to user with error message (example form URL e.g. /posts/new)  
