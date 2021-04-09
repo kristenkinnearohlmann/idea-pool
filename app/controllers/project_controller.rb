@@ -37,42 +37,34 @@ class ProjectController < ApplicationController
                 params[:idea].delete("is_private") if params[:idea].keys.include?("is_private")
             end
 
+            # instantiate project and idea
             project = Project.new(params[:project])
             idea = Idea.new(params[:idea]) if !params[:idea].keys.include?("id")
 
-            if !project.valid? || !idea.valid?
+            # TODO: Add project validation
+            # test if valid, redirect to creation with errors if not
+            if !project.valid? || (idea != nil && !idea.valid?)
                 err_msgs = Helpers.build_error_msg(project.errors, "Project") | Helpers.build_error_msg(idea.errors, "Idea")
                 flash.next[:msg] = err_msgs.join(", ")
                 redirect '/projects/new'
             end
-            binding.pry
-            idea = Idea.find(params[:idea][:id]) if params[:idea].keys.include?("id")
-            binding.pry
-            # # create project and validate
-            # project = Project.new(params[:project])
-            # # TODO: Add validation
-        
-            # # create idea and validate
-            # if !params[:idea].keys.include?("id") 
-            #     idea = Idea.new(params[:idea])
-            #     binding.pry
-            #     # TODO: Add validation
-            #     binding.pry
-            # else
-            #     # existing idea, retrieve
-            #     idea = Idea.find(params[:idea][:id])
-            # end
 
-            # idea.save
-            # user.ideas << idea
+            # valid project, save
+            project.save
+            user.projects << project
 
-            # project.save
-            # user.projects << project
+            #  valid idea, save or find by id
+            if idea != nil
+                idea.save
+                user.ideas << idea
+            else
+                idea = Idea.find(params[:idea][:id]) if params[:idea].keys.include?("id")
+            end
 
-            # # add project to idea
-            # idea.projects << project
+            # #add project to idea
+            idea.projects << project
 
-            # redirect "/projects/#{project.id}"
+            redirect "/projects/#{project.id}"
         end
     end
 
