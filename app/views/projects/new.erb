@@ -1,6 +1,11 @@
 <form method="POST" action="/projects">
     <div class="credential-forms">
         <h2>Create a new project</h2>
+        <p>
+            <% if flash[:msg] %>
+                <span class="flash-msg"><%= flash[:msg] %></span>
+            <% end %>
+        </p>
         <p><span class="required-value">* indicates required fields</span></p>
         <p>
             <label for="project_name">Name: </label><span class="required-value">*</span><br/>

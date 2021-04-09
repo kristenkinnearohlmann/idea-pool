@@ -7,10 +7,10 @@ class Helpers
         !!session[:user_id]
     end
 
-    def self.build_error_msg(errors)
+    def self.build_error_msg(errors, prefix = nil)
         err_msg = []
         errors.each do |key, value|
-            err_msg << "#{key.to_s.gsub("_"," ").capitalize} #{value}\n"
+            err_msg << "#{prefix}: #{key.to_s.gsub("_"," ").capitalize} #{value}\n"
         end
         err_msg
     end

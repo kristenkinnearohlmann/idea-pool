@@ -22,7 +22,7 @@
         <span class="bold">Main Language:</span> <%= @project.main_language %><br/>
         <span class="bold">GitHub Repo:</span> <a href="<%= @project.github_repo %>"><%= @project.github_repo %></a><br/>
         <span class="bold">Based on:</span> 
-        <% if @project.ideas[0].is_private == false || (@project.ideas[0].is_private == false && Helpers.is_logged_in?(session) && Helpers.current_user.id == @project.ideas[0].user_id)  %>
+        <% if @project.ideas[0].is_private == false || (@project.ideas[0].is_private == true && Helpers.is_logged_in?(session) && Helpers.current_user(session).id == @project.ideas[0].user_id)  %>
             <a href="/ideas/<%= @project.ideas[0].id %>"><%= @project.ideas[0].name %></a><% if @project.ideas[0].is_private %> <em>(private)</em><% end %> submitted by <%= @project.ideas[0].user.full_name %>
         <% else %>
             <em>Idea withheld</em>
