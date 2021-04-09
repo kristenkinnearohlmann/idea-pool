@@ -32,7 +32,7 @@
                     <% if idea.is_private == false || (idea.is_private == true && Helpers.is_logged_in?(session) && Helpers.current_user(session) == idea.user) %>
                         <div>
                             <input type="radio" id="<%= idea.name %>" name="idea[id]" value="<%= idea.id %>">
-                            <label for="<%= idea.name %>"><%= idea.name %></label>
+                            <label for="<%= idea.name %>"><%= idea.name %></label><% if idea.is_private %> <em>(private)</em><% end %>
                         <div>
                     <% end %>
                 <% end %>
