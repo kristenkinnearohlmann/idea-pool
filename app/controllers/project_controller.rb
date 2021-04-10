@@ -11,6 +11,7 @@ class ProjectController < ApplicationController
             redirect '/login'
         else
             user = User.find(session[:user_id])
+            err_msgs = []
 
             # If is_private is not checked, add as false, otherwise update as true
             if !params[:project].keys.include?("is_private")
@@ -37,17 +38,16 @@ class ProjectController < ApplicationController
                 params[:idea].delete("is_private") if params[:idea].keys.include?("is_private")
             end
 
-            # instantiate project and idea
+            # instantiate project and test if valid
             project = Project.new(params[:project])
-            idea = Idea.new(params[:idea]) if !params[:idea].keys.include?("id")
-            binding.pry
-            # TODO: Add project validation
-            # test if valid, redirect to creation with errors if not
-            if !project.valid? || (idea != nil && !idea.valid?)
-                err_msgs = []
-                err_msgs = err_msgs | Helpers.build_error_msg(project.errors, "Project") if project != nil
-                err_msgs = err_msgs | Helpers.build_error_msg(idea.errors, "Idea") if idea != nil
+            err_msgs = err_msgs | Helpers.build_error_msg(project.errors, "Project") if !project.valid?
 
+            # instantiate idea and test if valid
+            idea = Idea.new(params[:idea]) if !params[:idea].keys.include?("id")
+            err_msgs = err_msgs | Helpers.build_error_msg(idea.errors, "Idea") if (idea != nil && !idea.valid?)
+
+            # if there are errors on either project or idea, redirect to create
+            if !err_msgs.empty?
                 flash.next[:msg] = err_msgs.join(", ")
                 redirect '/projects/new'
             end
@@ -111,6 +111,7 @@ class ProjectController < ApplicationController
 
         if Helpers.is_logged_in?(session) && Helpers.current_user(session).id == project.user_id
             user = User.find(session[:user_id])
+            err_msgs = []
             
             # If is_private is not checked, add as false, otherwise update as true
             if !params[:project].keys.include?("is_private")
@@ -140,9 +141,20 @@ class ProjectController < ApplicationController
             # instantiate idea if new
             idea = Idea.new(params[:idea]) if !params[:idea].keys.include?("id")
 
-            # test if valid, redirect to edit with errors if not
-            if !project.valid? || (idea != nil && !idea.valid?)
-                err_msgs = Helpers.build_error_msg(project.errors, "Project") | Helpers.build_error_msg(idea.errors, "Idea")
+            # check if idea is valid, collect errors if not for later display
+            err_msgs = err_msgs | Helpers.build_error_msg(idea.errors, "Idea") if (idea != nil && !idea.valid?)
+
+            # update fields
+            project.name = params[:project][:name]
+            project.description = params[:project][:description]
+            project.main_language = params[:project][:main_language]
+            project.github_repo = params[:project][:github_repo]
+            project.is_private = params[:project][:is_private]
+
+            # test if  project is valid
+            err_msgs = err_msgs | Helpers.build_error_msg(project.errors, "Project") if !project.valid?
+
+            if !err_msgs.empty?
                 flash.next[:msg] = err_msgs.join(", ")
                 redirect "/projects/#{project.id}/edit"
             end
@@ -159,12 +171,7 @@ class ProjectController < ApplicationController
             # clear the idea from the project and idea project relationship
             project.ideas.clear
 
-            # update fields + add idea
-            project.name = params[:project][:name]
-            project.description = params[:project][:description]
-            project.main_language = params[:project][:main_language]
-            project.github_repo = params[:project][:github_repo]
-            project.is_private = params[:project][:is_private]
+            # add idea and save project
             idea.projects << project
             project.save
 
