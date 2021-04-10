@@ -141,7 +141,7 @@ class ProjectController < ApplicationController
             if !project.valid? || (idea != nil && !idea.valid?)
                 err_msgs = Helpers.build_error_msg(project.errors, "Project") | Helpers.build_error_msg(idea.errors, "Idea")
                 flash.next[:msg] = err_msgs.join(", ")
-                redirect '/projects/<%= project.id %>/edit'
+                redirect "/projects/#{project.id}/edit"
             end
 
             #  valid idea, save or find by id
@@ -162,13 +162,9 @@ class ProjectController < ApplicationController
             project.main_language = params[:project][:main_language]
             project.github_repo = params[:project][:github_repo]
             project.is_private = params[:project][:is_private]
-            # field1,etc
-            # idea.projects << project
-            # project.save
+            idea.projects << project
+            project.save
 
-            # work area
-
-            binding.pry
             flash.next[:msg] = "Project updated"
             redirect "/projects/#{project.id}"
         else
