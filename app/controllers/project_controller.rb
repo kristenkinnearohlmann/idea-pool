@@ -115,7 +115,7 @@ class ProjectController < ApplicationController
 
         if Helpers.current_user(session).id == project.user_id
             # TODO: Implement project edit
-
+            binding.pry
             flash.next[:msg] = "Project updated"
             redirect "/projects/#{project.id}"
         else
