@@ -40,11 +40,14 @@ class ProjectController < ApplicationController
             # instantiate project and idea
             project = Project.new(params[:project])
             idea = Idea.new(params[:idea]) if !params[:idea].keys.include?("id")
-
+            binding.pry
             # TODO: Add project validation
             # test if valid, redirect to creation with errors if not
             if !project.valid? || (idea != nil && !idea.valid?)
-                err_msgs = Helpers.build_error_msg(project.errors, "Project") | Helpers.build_error_msg(idea.errors, "Idea")
+                err_msgs = []
+                err_msgs = err_msgs | Helpers.build_error_msg(project.errors, "Project") if project != nil
+                err_msgs = err_msgs | Helpers.build_error_msg(idea.errors, "Idea") if idea != nil
+
                 flash.next[:msg] = err_msgs.join(", ")
                 redirect '/projects/new'
             end
