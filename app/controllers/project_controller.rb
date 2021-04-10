@@ -12,14 +12,14 @@ class ProjectController < ApplicationController
         else
             user = User.find(session[:user_id])
 
-            # If in_private is not checked, add as false, otherwise update as true
+            # If is_private is not checked, add as false, otherwise update as true
             if !params[:project].keys.include?("is_private")
                 params[:project][:is_private] = false
             else
                 params[:project][:is_private] = true
             end
 
-            # If new idea, handle in_private boolean and remove "id" key to process params hash
+            # If new idea, handle is_private boolean and remove "id" key to process params hash
             # for new idea. Also, remove stray keys if an existing idea is picked but the new idea
             # is also filled in
             if params[:idea][:id] == "-1" 
@@ -105,16 +105,69 @@ class ProjectController < ApplicationController
 
     patch '/projects/:id' do
         project = Project.find(params[:id])
-        # Add both project and idea is_private
-        # # If in_private is not checked, add as false, otherwise update as true
-        # if !params[:idea].keys.include?("is_private")
-        #     params[:idea][:is_private] = false
-        # else
-        #     params[:idea][:is_private] = true
-        # end
 
-        if Helpers.current_user(session).id == project.user_id
-            # TODO: Implement project edit
+        if Helpers.is_logged_in?(session) && Helpers.current_user(session).id == project.user_id
+            user = User.find(session[:user_id])
+            
+            # If is_private is not checked, add as false, otherwise update as true
+            if !params[:project].keys.include?("is_private")
+                params[:project][:is_private] = false
+            else
+                params[:project][:is_private] = true
+            end
+
+            # If new idea, handle is_private boolean and remove "id" key to process params hash
+            # for new idea. Also, remove stray keys if an existing idea is picked but the new idea
+            # is also filled in
+            if params[:idea][:id] == "-1" 
+                # new idea
+                if !params[:idea].keys.include?("is_private")
+                    params[:idea][:is_private] = false
+                else
+                    params[:idea][:is_private] = true
+                end
+                params[:idea].delete("id")
+            else
+                # existing idea
+                params[:idea].delete("name") if params[:idea].keys.include?("name")
+                params[:idea].delete("description") if params[:idea].keys.include?("description")
+                params[:idea].delete("is_private") if params[:idea].keys.include?("is_private")
+            end
+
+            # instantiate idea if new
+            idea = Idea.new(params[:idea]) if !params[:idea].keys.include?("id")
+
+            # test if valid, redirect to edit with errors if not
+            if !project.valid? || (idea != nil && !idea.valid?)
+                err_msgs = Helpers.build_error_msg(project.errors, "Project") | Helpers.build_error_msg(idea.errors, "Idea")
+                flash.next[:msg] = err_msgs.join(", ")
+                redirect '/projects/<%= project.id %>/edit'
+            end
+
+            #  valid idea, save or find by id
+            if idea != nil
+                idea.save
+                user.ideas << idea
+            else
+                idea = Idea.find(params[:idea][:id]) if params[:idea].keys.include?("id")
+            end
+
+            # valid project, update and save
+            # clear the idea from the project and idea project relationship
+            project.ideas.clear
+
+            # update fields + add idea
+            project.name = params[:project][:name]
+            project.description = params[:project][:description]
+            project.main_language = params[:project][:main_language]
+            project.github_repo = params[:project][:github_repo]
+            project.is_private = params[:project][:is_private]
+            # field1,etc
+            # idea.projects << project
+            # project.save
+
+            # work area
+
             binding.pry
             flash.next[:msg] = "Project updated"
             redirect "/projects/#{project.id}"

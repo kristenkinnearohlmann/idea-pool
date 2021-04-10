@@ -11,7 +11,7 @@ class IdeaController < ApplicationController
         else
             user = User.find(session[:user_id])
 
-            # If in_private is not checked, add as false, otherwise update as true
+            # If is_private is not checked, add as false, otherwise update as true
             if !params[:idea].keys.include?("is_private")
                 params[:idea][:is_private] = false
             else
@@ -66,7 +66,7 @@ class IdeaController < ApplicationController
 
     patch '/ideas/:id' do
         idea = Idea.find(params[:id])
-        # If in_private is not checked, add as false, otherwise update as true
+        # If is_private is not checked, add as false, otherwise update as true
         if !params[:idea].keys.include?("is_private")
             params[:idea][:is_private] = false
         else
