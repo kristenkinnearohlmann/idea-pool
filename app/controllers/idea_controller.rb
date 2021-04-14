@@ -94,7 +94,7 @@ class IdeaController < ApplicationController
                 flash.next[:msg] = "This idea is attached to one or more projects and cannot be deleted."
                 redirect "/ideas/#{idea.id}"
             else
-                idea.delete
+                idea.destroy
                 flash.next[:msg] = "Idea deleted"
                 redirect '/ideas'
             end
